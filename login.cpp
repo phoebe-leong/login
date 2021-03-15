@@ -1,6 +1,6 @@
 /**
  * @file login.cpp
- * @author Phoebe Leong (dariusleong8@gmail.com)
+ * @author PH03be (phoebeleong8@gmail.com)
  * @brief A simple login project
  * @version 0.1
  * @date 28-02-21
@@ -8,63 +8,35 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "login.h"
 using namespace std;
 
-// uwu :3
-
 int menuSelect;
-std::string password = "password";
-std::string loginInput;
-std::string usernameInput;
-std::string username = "user";
+string username = "fjfjdjdj";
+string password = "asjfjfjfj";
+string usernameInput;
+string loginInput;
 
+
+// Find a secure hashing algorithm? - SHA-256?
 
 int close() {
-    return 3;
+    return 0;
 }
 
-void login() {
-    std::cout << "-------------------------------------------\n\n";
-    std::cout << "             Enter your username           \n\n";
-    std::cout << "-------------------------------------------\n\n";
-    std::cin >> usernameInput;
-    std::cout << "\n\n";
+void save() {
 
-    std::cout << "-------------------------------------------\n\n";
-    std::cout << "             Enter your password           \n\n";
-    std::cout << "-------------------------------------------\n\n";
-    std::cin >> loginInput;
-
-    if (loginInput == password && usernameInput == username) {
-        std::cout << "Logging you in...";
-        std::cout << "Logged in as" << username;
-    } else {
-        std::cout << "Your password is incorrect.\n\n";
-        menu();
-    }
-}
-
-void signup() {
-    std::cout << "-------------------------------------------\n\n";
-    std::cout << "             Enter your new username       \n\n";
-    std::cout << "-------------------------------------------\n\n";
-    std::cin >> username;
-    std::cout << "-------------------------------------------\n\n";
-    std::cout << "           Enter your new password         \n\n";
-    std::cout << "-------------------------------------------\n\n";
-    std::cin >> password;
-    std::cout << "\n\n Your new password is " << password << " and your username is " << username << ".\n\n";
 }
 
 void menu() {
-    std::cout << "-------------------------------------------\n\n";
-    std::cout << "                  Login [1]                  \n";
-    std::cout << "                 Sign Up [2]                 \n";
-    std::cout << "             Close the program [3]         \n\n";
-    std::cout << "-------------------------------------------\n\n";
-    std::cin >> menuSelect;
+    cout << "-------------------------------------------\n\n";
+    cout << "                  Login [1]                  \n";
+    cout << "                 Sign Up [2]                 \n";
+    cout << "             Close the program [3]         \n\n";
+    cout << "-------------------------------------------\n\n";
+    cin >> menuSelect;
 
     switch (menuSelect) {
         case 1:
@@ -77,12 +49,47 @@ void menu() {
         close();
         break;
         default:
-        std::cout << "You entered an incorrect number. Select one of the three.\n\n";
+        cout << "You entered an incorrect number. Select one of the three.\n\n";
         menu();
     }
+}
+
+void login() {
+    cout << "-------------------------------------------\n\n";
+    cout << "             Enter your username           \n\n";
+    cout << "-------------------------------------------\n\n";
+    cin >> usernameInput;
+    cout << "\n\n";
+
+    cout << "-------------------------------------------\n\n";
+    cout << "             Enter your password           \n\n";
+    cout << "-------------------------------------------\n\n";
+    cin >> loginInput;
+
+    if (loginInput == password && usernameInput == username) {
+        cout << "Logging you in...";
+        cout << "Logged in as" << username;
+    } else {
+        cout << "Your password is incorrect.\n\n";
+        menu();
+    }
+}
+
+void signup() {
+    cout << "-------------------------------------------\n\n";
+    cout << "             Enter your new username       \n\n";
+    cout << "-------------------------------------------\n\n";
+    cin >> username;
+    cout << "-------------------------------------------\n\n";
+    cout << "           Enter your new password         \n\n";
+    cout << "-------------------------------------------\n\n";
+    cin >> password;
+    cout << "Your username and password have been changed successfully!\n";
+    menu();
 } 
 
 int main() {
-    std::cout << "Designed & Developed by PH03be.\n\n";
-    menu();
+    cout << "";
+    cout << "Designed (badly) and Developed (badly) by PH03be\n";
+    cout << "#currentlyconsideringotherskills";
 }

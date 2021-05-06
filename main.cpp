@@ -1,5 +1,5 @@
 /* 
- * v2.0
+ * v2.1
  */
 
 #include <iostream>
@@ -115,8 +115,15 @@ void login() {
         system("clear");
 
         /*
-         * Change line 121 to launch your program that you are using this for
-         */
+         * Change line 128 to launch your program that you are using this for
+         * E.g.:
+         * 1.
+         * system(g++ yourProgramHere);
+         * system(./a.out);
+         * 
+         * 2.
+         * system(./yourProgramHere);
+        */
 
         menu();
     } else {

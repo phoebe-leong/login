@@ -1,5 +1,5 @@
 /* 
- * v2.2
+ * v2.3
  */
 
 #include <iostream>
@@ -161,7 +161,7 @@ void signup() {
         signup();
     } else if (newPassword.size() < 8) {
         system("clear");
-        std::cout << "Password does not meet the requirements.\n";
+        std::cout << "Password and/or username does not meet the requirements.\n";
         std::cout << "You may view the requirements at https://ph03be.glitch.me/login-github-project/passwordreqs.html\n";
         std::cin.ignore();
         std::cin.get();
@@ -181,7 +181,7 @@ void signup() {
 
     if (passwordNumberCheck == newPassword.size()) {
         system("clear");
-        std::cout << "Password does not meet the requirements.\n";
+        std::cout << "Password and/or username does not meet the requirements.\n";
         std::cout << "You may view the requirements at https://ph03be.glitch.me/login-github-project/passwordreqs.html\n";
         std::cin.ignore();
         std::cin.get();
@@ -199,7 +199,7 @@ void signup() {
 
     if (upperCasePasswordCheck == newPassword.size()) {
         system("clear");
-        std::cout << "Password does not meet the requirements.\n";
+        std::cout << "Password and/or username does not meet the requirements.\n";
         std::cout << "You may view the requirements at https://ph03be.glitch.me/login-github-project/passwordreqs.html\n";
         std::cin.ignore();
         std::cin.get();
@@ -208,7 +208,7 @@ void signup() {
     }
 
     if (newPassword == "password" || newPassword == "PASSWORD" || newPassword == "pAsSwOrD" || newPassword == "pAA5w0rd") {
-        std::cout << "Password does not meet the requirements.\n";
+        std::cout << "Password and/or username does not meet the requirements.\n";
         std::cout << "You may view the requirements at https://ph03be.glitch.me/login-github-project/passwordreqs.html\n";
         std::cin.ignore();
         std::cin.get();

@@ -89,8 +89,6 @@ void login() {
     std::string usernameInput;
     std::string loginInput;
 
-    fileRead.open("data.txt");
-
     // assign the variables the lines using getline
     getline(fileRead, username);
     getline(fileRead, password);
@@ -154,7 +152,7 @@ void signup() {
     if (newUsername == username || newPassword == password && newUsername == username || newPassword == password) {
         system("clear");
         std::cout << "Password does not meet the requirements.\n";
-        std::cout << "You may view the requirements at https://ph03be.glitch.me/login-github-project/passwordreqs.html\n";
+        std::cout << "You may view the requirements at https://phoebe-leong.github.io/req/index.html\n";
         std::cin.ignore();
         std::cin.get();
         system("clear");
@@ -162,7 +160,7 @@ void signup() {
     } else if (newPassword.size() < 8) {
         system("clear");
         std::cout << "Password and/or username does not meet the requirements.\n";
-        std::cout << "You may view the requirements at https://ph03be.glitch.me/login-github-project/passwordreqs.html\n";
+        std::cout << "You may view the requirements at https://phoebe-leong.github.io/req/index.html\n";
         std::cin.ignore();
         std::cin.get();
         system("clear");
@@ -220,6 +218,7 @@ void signup() {
     password = newPassword;
 
     file.open("data.txt");
+
     file << username << "\n";
     file << password;
     file.close();
@@ -233,7 +232,9 @@ void signup() {
 } 
 
 int main() {
+
     fileRead.open("data.txt");
+
     getline(fileRead, username);
     getline(fileRead, password);
     fileRead.close();

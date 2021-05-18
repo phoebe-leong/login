@@ -1,5 +1,5 @@
 /* 
- * v2.4
+ * v2.5
  */
 
 #include <iostream>
@@ -97,7 +97,7 @@ void login() {
     std::cout << "-------------------------------------------\n\n";
     std::cout << "             Enter your username           \n\n";
     std::cout << "-------------------------------------------\n";
-    std::cin >> usernameInput;
+    getline(std::cin, usernameInput);
     system("clear");
 
     std::cout << "-------------------------------------------\n\n";
@@ -142,7 +142,7 @@ void signup() {
     std::cout << "-------------------------------------------\n\n";
     std::cout << "             Enter your new username       \n\n";
     std::cout << "-------------------------------------------\n";
-    std::cin >> newUsername;
+    getline(std::cin, newUsername);
     system("clear");
     std::cout << "-------------------------------------------\n\n";
     std::cout << "           Enter your new password         \n\n";

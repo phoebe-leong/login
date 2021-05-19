@@ -113,7 +113,7 @@ void login() {
         system("clear");
 
         /*
-         * Change line 128 to launch your program that you are using this for
+         * Change line 126 to launch your program that you are using this for
          * E.g.:
          * 1.
          * system(g++ yourProgramHere);

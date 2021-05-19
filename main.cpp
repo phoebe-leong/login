@@ -1,8 +1,9 @@
 /* 
- * v2.5
+ * v2.6
  */
 
 #include <iostream>
+#include <stdio.h>
 #include <fstream>
 #include <string>
 
@@ -43,6 +44,7 @@ void menu() {
 
         if (menuSelect == "1") {
             system("clear");
+            std::cin.ignore();
             signup();
         } else if (menuSelect == "2") {
             system("clear");
@@ -70,6 +72,7 @@ void menu() {
             login();
         } else if (menuSelect == "2") {
             system("clear");
+            std::cin.ignore();
             signup();
         } else if (menuSelect == "3") {
             system("clear");
@@ -90,6 +93,7 @@ void login() {
     std::string loginInput;
 
     // assign the variables the lines using getline
+    fileRead.open("data.txt");
     getline(fileRead, username);
     getline(fileRead, password);
     fileRead.close();
@@ -113,7 +117,7 @@ void login() {
         system("clear");
 
         /*
-         * Change line 126 to launch your program that you are using this for
+         * Change line 130 to launch your program that you are using this for
          * E.g.:
          * 1.
          * system(g++ yourProgramHere);
@@ -205,20 +209,10 @@ void signup() {
         signup();
     }
 
-    if (newPassword == "password" || newPassword == "PASSWORD" || newPassword == "pAsSwOrD" || newPassword == "pAA5w0rd") {
-        std::cout << "Password and/or username does not meet the requirements.\n";
-        std::cout << "You may view the requirements at https://ph03be.glitch.me/login-github-project/passwordreqs.html\n";
-        std::cin.ignore();
-        std::cin.get();
-        system("clear");
-        signup();
-    }    
-
     username = newUsername;
     password = newPassword;
 
     file.open("data.txt");
-
     file << username << "\n";
     file << password;
     file.close();
@@ -232,6 +226,7 @@ void signup() {
 } 
 
 int main() {
+    std::srand(std::time(nullptr));
 
     fileRead.open("data.txt");
 

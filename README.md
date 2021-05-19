@@ -5,4 +5,4 @@ So say if someone was making a TUI program that needed a login and logout functi
 
 #### Version
 
-2.5
+2.6

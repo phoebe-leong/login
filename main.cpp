@@ -1,10 +1,11 @@
 /* 
- * v2.8
+ * v3.0
  */
 
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "cryptor/cryptor.hpp"
 
 // variable declarations
 
@@ -13,6 +14,9 @@ std::string password;
 std::ifstream fileRead;
 
 std::string reqURL = "https://phoebe-leong.github.io/login-proj/req/index.html";
+
+std::string decryptedUsername;
+std::string decryptedPassword;
 
 // function declarations
 
@@ -36,7 +40,7 @@ void menu() {
 
     // if the user has no login data or the data.txt file doesn't exist, show this
 
-    if (username == "" && password == "") {
+    if (username.empty() && password == "") {
         std::cout << "                 Sign Up [1]                 \n";
         std::cout << "             Close the program [2]         \n\n";
         std::cout << "-------------------------------------------\n";
@@ -92,15 +96,10 @@ void login() {
     std::string usernameInput;
     std::string loginInput;
 
-    // assign the variables the lines using getline
-    fileRead.open("data.txt");
-    getline(fileRead, username);
-    getline(fileRead, password);
-    fileRead.close();
-
     std::cout << "-------------------------------------------\n\n";
     std::cout << "             Enter your username           \n\n";
     std::cout << "-------------------------------------------\n";
+    std::cin.ignore();
     getline(std::cin, usernameInput);
     system("clear");
 
@@ -117,7 +116,7 @@ void login() {
         system("clear");
 
         /*
-         * Change line 129 to launch your program that you are using this for
+         * Change the following line to launch your program that you are using this for
          * E.g.:
          * 1.
          * system(g++ yourProgramHere);
@@ -146,6 +145,7 @@ void signup() {
     std::cout << "-------------------------------------------\n\n";
     std::cout << "             Enter your new username       \n\n";
     std::cout << "-------------------------------------------\n";
+    std::cin.ignore();
     getline(std::cin, newUsername);
     system("clear");
     std::cout << "-------------------------------------------\n\n";
@@ -170,8 +170,6 @@ void signup() {
         system("clear");
         signup();
     }
-
-    // trying to make it as secure as possible without making it secure cause i dont know how
 
     int passwordNumberCheck;
 
@@ -212,9 +210,12 @@ void signup() {
     username = newUsername;
     password = newPassword;
 
+    auto encryptedUsername = cryptor::encrypt(username);
+    auto encryptedPassword = cryptor::encrypt(password);
+
     file.open("data.txt");
-    file << username << "\n";
-    file << username;
+    file << encryptedUsername << "\n";
+    file << encryptedPassword;
     file.close();
 
     system("clear");
@@ -231,6 +232,12 @@ int main() {
     getline(fileRead, username);
     getline(fileRead, password);
     fileRead.close();
+
+    std::string decryptedUsername = cryptor::decrypt(username);
+    std::string decryptedPassword = cryptor::decrypt(password);
+
+    username = decryptedUsername;
+    password = decryptedPassword;
 
     system("clear");
     menu();

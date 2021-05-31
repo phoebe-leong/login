@@ -1,5 +1,5 @@
 /* 
- * v3.0
+ * v3.1
  */
 
 #include <iostream>
@@ -20,20 +20,11 @@ std::string decryptedPassword;
 
 // function declarations
 
-void menu();
+int menu();
 void login();
 void signup();
-int close();
 
-int close() {
-    std::cout << "Press enter to exit the program\n";
-    std::cin.ignore();
-    std::cin.get();
-    system("clear");
-    return 0;
-}
-
-void menu() {
+int menu() {
     std::string menuSelect;
 
     std::cout << "-------------------------------------------\n\n";
@@ -52,7 +43,8 @@ void menu() {
             signup();
         } else if (menuSelect == "2") {
             system("clear");
-            close();
+
+            return 0;
         } else {
             system("clear");
             std::cout << "You entered an incorrect character. Select one that is presented.\n";
@@ -73,6 +65,7 @@ void menu() {
 
         if (menuSelect == "1") {
             system("clear");
+            std::cin.ignore();
             login();
         } else if (menuSelect == "2") {
             system("clear");
@@ -80,7 +73,8 @@ void menu() {
             signup();
         } else if (menuSelect == "3") {
             system("clear");
-            close();
+
+            return 0;
         } else {
             system("clear");
             std::cout << "You entered an incorrect number. Select one of the three.\n";
@@ -90,18 +84,39 @@ void menu() {
             menu();
         }
     }
+
+    return 0;
 }
 
 void login() {
+
+    fileRead.open("data.txt");
+    getline(fileRead, username);
+    getline(fileRead, password);
+    fileRead.close();
+
+    auto decryptedUsername = cryptor::decrypt(username);
+    auto decryptedPassword = cryptor::decrypt(password);
+
+    username = decryptedUsername;
+    password = decryptedPassword;
+
     std::string usernameInput;
     std::string loginInput;
 
     std::cout << "-------------------------------------------\n\n";
     std::cout << "             Enter your username           \n\n";
     std::cout << "-------------------------------------------\n";
-    std::cin.ignore();
-    getline(std::cin, usernameInput);
+    std::cin >> usernameInput;
     system("clear");
+
+    if (usernameInput != username) {
+        system("clear");
+        std::cout << "Incorrect Username. Press enter to try again.\n";
+        std::cin.get();
+        system("clear");
+        login();
+    }
 
     std::cout << "-------------------------------------------\n\n";
     std::cout << "             Enter your password           \n\n";
@@ -145,8 +160,7 @@ void signup() {
     std::cout << "-------------------------------------------\n\n";
     std::cout << "             Enter your new username       \n\n";
     std::cout << "-------------------------------------------\n";
-    std::cin.ignore();
-    getline(std::cin, newUsername);
+    std::cin >> newUsername;
     system("clear");
     std::cout << "-------------------------------------------\n\n";
     std::cout << "           Enter your new password         \n\n";
@@ -228,16 +242,7 @@ void signup() {
 
 int main() {
 
-    fileRead.open("data.txt");
-    getline(fileRead, username);
-    getline(fileRead, password);
-    fileRead.close();
-
-    std::string decryptedUsername = cryptor::decrypt(username);
-    std::string decryptedPassword = cryptor::decrypt(password);
-
-    username = decryptedUsername;
-    password = decryptedPassword;
+    cryptor::set_key("Jette");
 
     system("clear");
     menu();

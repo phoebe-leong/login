@@ -4,7 +4,7 @@ A simple TUI login page I made which was designed to be used in conjunction to o
 Anyone can use it for anything.
 No credit needed.
 
-## Compile + Run
+## How To Compile + Run
 
 ```
 g++ main.cpp -std=c++11 -o login

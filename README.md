@@ -5,4 +5,4 @@ Anyone can use it for anything.
 No credit needed.
 
 ## Version
-3.0 - Use With Caution (some bugs)
+3.1 - Stable

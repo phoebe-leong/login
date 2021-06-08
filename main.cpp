@@ -1,22 +1,21 @@
 /* 
- * v3.1
+ * v3.2
  */
 
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "cryptor/cryptor.hpp"
+#include "cryptorv2/cryptorv2.hpp"
 
 // variable declarations
 
 std::string username;
 std::string password;
 std::ifstream fileRead;
+std::ofstream file;
 
 std::string reqURL = "https://phoebe-leong.github.io/login-proj/req/index.html";
-
-std::string decryptedUsername;
-std::string decryptedPassword;
+std::string key;
 
 // function declarations
 
@@ -95,11 +94,8 @@ void login() {
     getline(fileRead, password);
     fileRead.close();
 
-    auto decryptedUsername = cryptor::decrypt(username);
-    auto decryptedPassword = cryptor::decrypt(password);
-
-    username = decryptedUsername;
-    password = decryptedPassword;
+    username = cryptorv2::decrypt(username);
+    password = cryptorv2::decrypt(password);
 
     std::string usernameInput;
     std::string loginInput;
@@ -152,8 +148,6 @@ void login() {
 }
 
 void signup() {
-
-    std::ofstream file;
     std::string newUsername;
     std::string newPassword;
 
@@ -224,12 +218,12 @@ void signup() {
     username = newUsername;
     password = newPassword;
 
-    auto encryptedUsername = cryptor::encrypt(username);
-    auto encryptedPassword = cryptor::encrypt(password);
+    username = cryptorv2::encrypt(username);
+    password = cryptorv2::encrypt(password);
 
     file.open("data.txt");
-    file << encryptedUsername << "\n";
-    file << encryptedPassword;
+    file << username << "\n";
+    file << password;
     file.close();
 
     system("clear");
@@ -242,7 +236,12 @@ void signup() {
 
 int main() {
 
-    cryptor::set_key("Jette");
+    cryptorv2::setKey("aebdbhrbbhetre5u64th54he4h64jmrw;hsgfbhwb;jnrwbnr"); // Keyboard smash - at least it's secure-ish
+
+    fileRead.open("data.txt");
+    getline(fileRead, username);
+    getline(fileRead, password);
+    fileRead.close();
 
     system("clear");
     menu();

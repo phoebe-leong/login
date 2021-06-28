@@ -12,4 +12,4 @@ g++ main.cpp -std=c++11 -o login
 ```
 
 ## Version
-3.1 - Stable
+3.2 - Stable
